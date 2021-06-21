@@ -1,29 +1,36 @@
 import React, { Component } from 'react';
 import fetchJsonp from 'fetch-jsonp'
 import './App.css';
+import CurrentForecast from './components/CurrentForecast'
 
 class App extends Component{
   state = {
     fetchingData: true,
-    weatherData: []
+    weatherData: {}
   }
 
   componentDidMount(){
     navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords
-      fetchJsonp(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+      fetchJsonp(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}&units=imperial`)
       .then(res => res.json())
-      .then(weatherData => console.log(weatherData))
+      .then(weatherData => this.setState({ 
+        fetchingData: false,
+        weatherData 
+      }))
     });
   }
 
   render(){
-    const { fetchingData } = this.state
+    const { fetchingData, weatherData } = this.state
+    console.log("inside render", weatherData)
     return (
       <div className="App">
-        <p>Weather App</p>
-        <p> { fetchingData ? "loading..." : <h1>Data is received</h1> }</p>
+        <h1>Weather App</h1>
+        { fetchingData ? "loading..." : <h2>Data is received</h2> }
+        <CurrentForecast forecast={weatherData.main} />
       </div>
+      
     );
   }
 }
