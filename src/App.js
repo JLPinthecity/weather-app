@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fetchJsonp from 'fetch-jsonp'
 import './App.css';
 
 class App extends Component{
@@ -10,9 +11,9 @@ class App extends Component{
   componentDidMount(){
     navigator.geolocation.getCurrentPosition(position => {
       const { latitude, longitude } = position.coords
-      console.log(latitude)
-      console.log(longitude)
-      fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+      fetchJsonp(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`)
+      .then(res => res.json())
+      .then(weatherData => console.log(weatherData))
     });
   }
 
