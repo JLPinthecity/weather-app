@@ -16,7 +16,7 @@ class App extends Component{
       .then(res => res.json())
       .then(weatherData => this.setState({ 
         fetchingData: false,
-        weatherData 
+        weatherData: weatherData
       }))
     });
   }
@@ -27,8 +27,7 @@ class App extends Component{
     return (
       <div className="App">
         <h1>Weather App</h1>
-        { fetchingData ? "loading..." : <h2>Data is received</h2> }
-        <CurrentForecast forecast={weatherData.main} />
+        { fetchingData ? "loading..." : <CurrentForecast forecast={weatherData.main} /> }
       </div>
       
     );
