@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+const url = 'http://api.openweathermap.org/data/2.5/weather?q=Hanoi&appid={API key}'
+
 class App extends Component{
   state = {
     fetchingData: true,
