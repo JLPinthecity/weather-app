@@ -10,7 +10,7 @@ import React from 'react'
             <h3>Feels Like: </h3>{feels_like}
             <h3>High: </h3>{temp_max}
             <h3>Low: </h3>{temp_min}
-            <h3>Humidity: </h3>{humidity}
+            <h3>Humidity: </h3>{humidity}%
                
           
             </div>
