@@ -1,6 +1,6 @@
 import React from 'react'
 
-   const CurrentForecast = ({forecast: { feels_like, temp, temp_max, temp_min, humidity }}) => {
+const CurrentForecast = ({forecast: { feels_like, temp, temp_max, temp_min, humidity }}) => {
 // debugger
     return (
         <div>

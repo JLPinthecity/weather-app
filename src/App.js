@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import fetchJsonp from 'fetch-jsonp'
 import './App.css';
-import CurrentForecast from './components/CurrentForecast'
 import Navbar from './components/Navbar'
-import WindReport from './components/CurrentForecast'
-import CloudsReport from './components/CurrentForecast'
-import WeatherReport from './components/CurrentForecast'
-import SysReport from './components/CurrentForecast'
+import CurrentForecast from './components/CurrentForecast'
+import WindReport from './components/WindReport'
+import CloudsReport from './components/CloudsReport'
+import WeatherReport from './components/WeatherReport'
+import SysReport from './components/SysReport'
 class App extends Component{
   state = {
     fetchingData: true,
@@ -26,8 +26,7 @@ class App extends Component{
     });
   };
 
-   handleForecastChange = forecastKey => this.setState({ forecastKey: forecastKey})
-
+  handleForecastChange = forecastKey => this.setState({ forecastKey: forecastKey})
 
   render(){
     
@@ -46,7 +45,7 @@ class App extends Component{
             <Navbar changeForecast={this.handleForecastChange}/>
             {forecastKey === 'main' && <CurrentForecast forecast={forecast}/> }
             {forecastKey === 'weather' && <WeatherReport forecast={forecast}/> }
-            {forecastKey === 'weather' && <WindReport forecast={forecast}/> }
+            {forecastKey === 'wind' && <WindReport forecast={forecast}/> }
             {forecastKey === 'clouds' && <CloudsReport forecast={forecast}/> }
             {forecastKey === 'sys' && <SysReport forecast={forecast}/> }
 
